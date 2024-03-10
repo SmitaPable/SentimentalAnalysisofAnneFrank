@@ -1,4 +1,4 @@
-aback	anger	0
+Faback	anger	0
 aback	anticipation	0
 aback	disgust	0
 aback	fear	0
@@ -81575,7 +81575,7 @@ mother	fear	0
 mother	joy	1
 mother	negative	1
 mother	positive	1
-mother	sadness	1
+mother	sadness	0
 mother	surprise	0
 mother	trust	1
 motherhood	anger	0

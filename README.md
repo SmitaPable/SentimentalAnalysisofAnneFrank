@@ -40,7 +40,7 @@ The extracted emotions data, sentiment scores, and labels are written to a CSV f
 ## Visualization
 The cleaned and labeled dataset was visualized using Python's Streamlit library. Interactive graphs and charts were created to explore the emotional journey depicted in Anne Frank's diary. The visualization provides a deeper understanding of the sentiments expressed throughout the diary and enriches the exploration of its historical significance.Here are some graph charts and wordcloud
 Streamlit App: http://localhost:8502/ (This might not visible on other pc but I have atteched screenshots for reference) 
-**Graph 1: Emotion Counts over Time**
+## **Graph 1: Emotion Counts over Time**
 ![image](https://github.com/SmitaPable/SentimentalAnalysisofAnneFrank/assets/146085760/6ad624a2-426d-4a74-9235-72b646e1462a)
 **Graph 2: Word Clouds for Emotions**
 ![image](https://github.com/SmitaPable/SentimentalAnalysisofAnneFrank/assets/146085760/ba2a6592-1e8d-47ae-9573-b26967f05602)

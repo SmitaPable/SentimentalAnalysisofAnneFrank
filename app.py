@@ -29,8 +29,8 @@ def get_img_as_base64(file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-#img = get_img_as_base64("Anne-Frank.jpeg")
-img= get_img_as_base64("Anne-Frank.jpg")
+img = get_img_as_base64("Anne-Frank.jpg")
+img1= get_img_as_base64("Anne-Frank1.jpg")
 page_bg_img = f"""
     <style>
     [data-testid="stAppViewContainer"] {{
@@ -42,7 +42,11 @@ page_bg_img = f"""
         background: rgba(0,0,0,0);
     }}
 
-
+    [data-testid="stSidebar"]{{
+    background-image: url("data:image/png;base64,{img1}");
+        background-size: cover;
+        background-position: center;
+    }}
     </style>
     """
 
@@ -60,7 +64,7 @@ common_figsize = (10, 6)
 # Register converters for matplotlib
 register_matplotlib_converters()
 
-# Replace 'your_input.csv' with the actual path to your CSV file
+#the path to your CSV file
 csv_file_path = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
 
 # Read the CSV file into a DataFrame
@@ -71,6 +75,11 @@ df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
 
 # Filter out rows with NaN dates
 df = df.dropna(subset=['Start Date'])
+
+st.sidebar.markdown("""
+    <h3 style='color:Black;font-size: 30px;text-shadow: -4px -4px 0 white;'>Graph Navigation</h3>
+    <hr style='border: 1px solid black;'>
+""", unsafe_allow_html=True)
 
 # Set up Streamlit app
 st.write(f"<h1 style='color:Black;font-size: 50px; text-shadow: -4px -4px 0 white;'>Sentimental Analysis of Anne Frank Diary</h1>", unsafe_allow_html=True)
@@ -117,6 +126,21 @@ else:
     # If no emotions are selected, display a message
     st.sidebar.info('Please select emotions from the sidebar to visualize.')
 
+st.header("Graph Summary:")
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+
+
+The bar chart above shows the counts of selected emotions over time. Each bar represents the frequency of a specific emotion on different dates.
+
+#### Insights:
+- Observe trends and patterns in emotion counts over time.
+- Compare the frequency of different emotions to understand shifts in sentiment.
+
+Feel free to interact with the plot by selecting emotions from the sidebar.
+</span>
+""", unsafe_allow_html=True)
+
 # Second Graph - Emotion Distribution Pie Chart
 st.sidebar.title('Graph 2: Emotion Distribution Pie Chart')
 # Adjust the title font size using Markdown and HTML syntax
@@ -137,6 +161,21 @@ plt.title('Emotion Distribution Pie Chart')
 
 # Display the pie chart using Streamlit
 st.pyplot(fig_pie)
+
+st.header("Graph Summary:")
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+            
+
+
+The pie chart above illustrates the distribution of emotions based on their total counts. Each slice represents the proportion of a specific emotion within the dataset.
+
+#### Insights:
+- Identify the relative prevalence of different emotions in the dataset.
+- Gain an overview of the overall emotional distribution.
+</span>
+""", unsafe_allow_html=True)
+
 
 # Third Graph - Sentiment Score Distribution Histogram
 st.sidebar.title('Graph 3: Sentiment Score Distribution Histogram')
@@ -172,6 +211,24 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 # Display the histogram using Streamlit
 st.pyplot(fig_hist)
 
+# Display the "Graph Summary" header
+st.header("Graph Summary:")
+
+#  Display the text with HTML formatting
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+This histogram visualizes the distribution of sentiment scores. Each bar represents the frequency of sentiment scores within a certain range.
+
+#### Insights:
+- **X-axis:** Sentiment scores are displayed on the x-axis.
+- **Y-axis:** Frequency of sentiment scores is represented on the y-axis.
+- **Color Gradient:** The bars are colored based on a custom colormap ranging from dark red to dark green, indicating the sentiment intensity.
+
+Feel free to explore the sentiment score distribution and analyze any patterns or trends.
+</span>
+""", unsafe_allow_html=True)
+
+
 # Fourth Graph - Create a heatmap
 st.sidebar.title('Graph 4: Correlation Heatmap')
 # Adjust the title font size using Markdown and HTML syntax
@@ -204,6 +261,20 @@ st.plotly_chart(fig)
 # Additional information
 st.sidebar.info("This heatmap shows the correlation between different emotion counts.")
 
+st.header("Graph Summary:")
+# Display the graph summary using st.markdown()
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The correlation heatmap above illustrates the relationships between different emotion counts. Each cell represents the correlation coefficient between two emotion counts, indicating the strength and direction of their relationship.
+
+#### Insights:
+- Identify Correlations: Observe the degree of correlation between pairs of emotion counts.
+- Pattern Recognition: Detect trends or patterns in how emotions correlate with each other.
+- Interactivity: Use the heatmap to interactively explore correlations by hovering over cells.
+- Feel free to explore the heatmap to gain insights into the relationships among different emotion counts.
+</span>
+""", unsafe_allow_html=True)
+
 # Fifth Graph - Word Cloud for Emotions
 st.sidebar.title('Graph 5: Word Clouds for Emotions')
 # Adjust the title font size using Markdown and HTML syntax
@@ -234,6 +305,21 @@ if selected_wordcloud_emotion:
 
 # Display additional information or text below the word cloud
 st.sidebar.info("This word cloud shows the most frequent words associated with the selected emotion.")
+
+st.header("Graph Summary:")
+# Display the graph summary using st.markdown()
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The word cloud visualization above displays the most frequent words associated with a selected emotion. Each word's size represents its frequency, and its color corresponds to the selected emotion.
+
+#### Insights:
+- **Visualizing Word Frequency:** Larger words indicate higher frequency, providing insight into the most common words associated with the chosen emotion.
+- **Color Representation:** Each word's color reflects the selected emotion, facilitating easy identification of emotion-related words.
+- **Interactivity:** Use the sidebar to select different emotions and explore their corresponding word clouds.
+
+Feel free to interact with the word cloud visualization to gain insights into the most frequent words associated with different emotions.
+</span>
+""", unsafe_allow_html=True)
 
 # Sixth Graph - Distribution of Sentiment Labels with Extreme Scores
 st.sidebar.title('Graph 6: Distribution of Sentiment Labels with Extreme Scores')
@@ -282,6 +368,20 @@ plt.tight_layout()
 # Display the sentiment distribution plot using Streamlit
 st.pyplot(fig_sentiment)
 
+st.header("Graph Summary:")
+# Display the graph summary using st.markdown()
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The bar chart above represents the distribution of sentiment labels with extreme scores. Each bar corresponds to a sentiment label category, showing the count of occurrences and the extreme score associated with each category.
+
+#### Insights:
+- **Sentiment Labels:** Explore the distribution of sentiment labels categorized as Highly Positive, Positive, Negative, Highly Negative, and Neutral.
+- **Extreme Scores:** Identify extreme sentiment scores associated with each sentiment label category.
+- **Interactivity:** Hover over the bars to view the extreme scores for each sentiment label.
+
+Feel free to interact with the plot to gain insights into the distribution and extreme scores of sentiment labels.
+</span>
+""", unsafe_allow_html=True)
 
 # Seventh Graph - Emotion Transition Diagram
 st.sidebar.title('Graph 7: Emotion Transition Diagram')
@@ -312,6 +412,20 @@ ax_transition.set_title('Emotion Transition Diagram')
 # Display the Emotion Transition Diagram using Streamlit
 st.pyplot(fig_transition)
 
+st.header("Graph Summary:")
+# Display the graph summary using st.markdown()
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The Emotion Transition Diagram above illustrates the transitions between different emotions over time. Each node represents an emotion, and directed edges indicate transitions from one emotion to another.
+
+#### Insights:
+- **Transition Analysis:** Observe how emotions transition from one state to another.
+- **Pattern Identification:** Identify recurring patterns or trends in emotion transitions.
+- **Interactivity:** Explore the diagram to understand the dynamics of emotion transitions.
+
+Feel free to interact with the diagram to gain insights into the transitions among different emotions.
+</span>
+""", unsafe_allow_html=True)
 
 # Eighth Graph - Animated Time Series: Evolution of Emotion Counts over Time
 st.sidebar.title('Graph 8: Animated Time Series')
@@ -334,7 +448,6 @@ if len(emotions) == len(colors):
 
     # Define events
     events = [
-        {'event': 'Persecution and Restrictions', 'date': '1942-06-15'},
         {'event': 'First entry after Hiding', 'date': '1942-07-08'},
         {'event': 'First entry after D-Day (Allied Invasion of Normandy)', 'date': '1944-06-09'},
         {'event': 'Warsaw Ghetto Uprising', 'date': '1943-04-19'},
@@ -395,6 +508,23 @@ if len(emotions) == len(colors):
 else:
     st.error("The number of emotions and colors must be the same.")
 
+st.header("Graph Summary:")
+# Display the graph summary using st.markdown()
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The animated time series illustrates the evolution of emotion counts over time, with each line representing a different emotion. Viewers can interact with the chart to explore emotion trends and toggle visibility of individual emotion lines.
+
+#### Correlation with Anne Frank's Sentiments:
+- **First Entry after Hiding (Negative):** Anne's apprehension and uncertainty upon emerging from hiding likely influenced her negative sentiment, reflecting challenges of reintegrating into a dangerous world.
+- **First Entry after D-Day (Neutral):** Anne's cautious optimism or reserved reaction to the Allied invasion may have resulted in a neutral sentiment, balancing hope for liberation with awareness of uncertainties.
+- **Warsaw Ghetto Uprising (Highly Negative):** Anne's deep empathy for the suffering in the Warsaw Ghetto likely led to a highly negative sentiment, mirroring the tragic events and profound loss experienced by the Jewish community.
+
+#### Event Markers:
+Vertical lines mark significant historical events, providing context for interpreting emotion trends.
+
+By exploring both the emotional trends in the animated time series and the correlation with Anne Frank's sentiments, viewers can gain deeper insights into the emotional landscape of the Holocaust period.
+</span>
+""", unsafe_allow_html=True)
 
 #Graph 9: Highest Count of Each Emotion with Date
 st.sidebar.title('Graph 9: Highest Count of Each Emotion with Date')
@@ -431,6 +561,29 @@ fig.update_layout(title='Max Counts of Emotions with Dates',
 
 # Display the chart
 st.plotly_chart(fig)
+
+st.header("Graph Summary:")
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The bar chart above displays the highest count of each emotion along with the corresponding date. Each bar represents a different emotion, and the height of the bar indicates the maximum count recorded for that emotion. The text on each bar shows the date when the maximum count occurred.
+
+#### Insights:
+- **Max Counts of Emotions:** Observe the highest counts recorded for each emotion.
+- **Corresponding Dates:** Identify the dates when the maximum counts occurred for each emotion.
+
+#### Emotion Analysis:
+In the provided excerpt, Anne Frank undergoes a rollercoaster of emotions, some of them are explained below.
+
+- **Happiness:** Anne experiences a moment of joy on March 6, 1944, amidst the challenges of hiding. This happiness likely stems from companionship and laughter shared with Peter, as well as the enjoyment of simple pleasures like listening to music.
+
+- **Sadness:** On July 8, 1944, Anne grapples with profound sadness as she reflects on the dangers and uncertainties of their situation. The fear of discovery and the potential loss of her cherished diary weigh heavily on her, contributing to her sense of melancholy.
+
+- **Anger:** Anne's privacy violation sparks anger on April 11, 1944, particularly at the suggestion of destroying her diary to conceal their hiding place. This intrusion on her personal space and the threat to her cherished writings elicit a strong sense of injustice and indignation.
+
+- **Fear:** On April 11, 1944, fear grips Anne during a break-in scare, as the threat of discovery looms large. The uncertainty surrounding the intruders' intentions intensifies her apprehension, leaving her feeling vulnerable and on edge as she awaits the arrival of the police.
+
+Overall, these emotional fluctuations underscore the complexity of Anne's experiences during hiding, highlighting the resilience and fortitude required to navigate such perilous circumstances.
+""", unsafe_allow_html=True)
 
 #Graph 10: "Emotion Timeline Analysis"
 st.sidebar.title('Graph 10: Emotion Timeline Analysis')
@@ -475,6 +628,18 @@ if len(emotions) == len(colors):
 else:
     st.error("The number of emotions and colors must be the same.")
 
+
+st.header("Graph Summary:")
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+This interactive visualization allows users to explore the evolution of different emotions over time. Users can select an emotion from the dropdown menu on the sidebar to view its corresponding timeline.
+
+- **Selection of Emotion:** Choose from a range of emotions including Joy, Sadness, Anger, Fear, Trust, Disgust, Surprise, and Anticipation using the sidebar dropdown menu.
+- **Evolution of Emotion Counts:** The main plot displays the evolution of the selected emotion's counts over time. Each point on the line chart represents the count of the chosen emotion at a specific date.
+- **Animated Visualization:** The chart features an animation option, enabling users to play through the timeline and observe how the counts of the selected emotion fluctuate over different time intervals.
+
+This interactive visualization aids in understanding the temporal dynamics of emotions, offering insights into how emotional states evolve over time. Users can explore trends, identify patterns, and gain deeper insights into the emotional landscape across various time periods.
+""", unsafe_allow_html=True)
 
 # Graph 11: Interactive Dashboard
 st.sidebar.title("Graph 11: Interactive Dashboard")
@@ -527,14 +692,50 @@ elif selected_chart_type == "Scatter Plot":
     st.plotly_chart(fig)
 
 
+st.header("Graph Summary:")
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+This interactive dashboard empowers users to customize their visualizations based on selected chart types and axes variables.
+
+- **Chart Type Selection:** Users can choose from three chart types including Line Chart, Bar Chart, and Scatter Plot using the dropdown menu on the sidebar.
+- **Customization Options:** The sidebar also provides options to select the X-axis and Y-axis variables, allowing users to tailor their visualizations according to their preferences.
+- **Dynamic Visualization:** Based on the user's selections, the dashboard generates interactive visualizations that dynamically update to reflect changes in the chosen chart type and axes variables.
+  
+This interactive dashboard enhances user experience by offering flexibility and control over the visualization process. Users can explore different chart types, compare variables, and gain deeper insights into the data through interactive and customizable visualizations.
+""", unsafe_allow_html=True)
 
 
 st.sidebar.title("Graph 12: Sentiment distribution over time")
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 12: sentiment distribution over time</h1>", unsafe_allow_html=True)
-    # Plot sentiment distribution over time
-fig = px.scatter(df, x='Start Date', y='Sentiment Label', color='Sentiment Label', hover_data={'Sentiment Score': True})
+    # Define colors for each sentiment category
+colors = {'Highly positive': 'green', 'Positive': 'darkgreen', 'Highly Negative': 'darkred', 'Negative': 'red', 'Neutral': 'lightgrey'}
+
+# Plot sentiment distribution over time
+fig = px.scatter(df, x='Start Date', y='Sentiment Label', color='Sentiment Label', color_discrete_map=colors, hover_data={'Sentiment Score': True})
 fig.update_traces(marker=dict(size=12))
 fig.update_layout(title='Sentiment Distribution Over Time', xaxis_title='Date', yaxis_title='Sentiment')
 st.plotly_chart(fig)
 
 
+st.header("Graph Summary:")
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+This visualization provides insights into the distribution of sentiment over time. Users can explore how sentiment labels vary across different dates.
+
+- **Sentiment Labels:** The scatter plot displays sentiment labels such as positive, negative, or neutral along the y-axis.
+- **Date:** The x-axis represents the dates, allowing users to track changes in sentiment over time.
+- **Color Coding:** Sentiment labels are color-coded for easy identification, with each label represented by a distinct color.
+- **Hover Data:** Hovering over data points provides additional information such as the sentiment score associated with each data point.
+
+This visualization facilitates the analysis of sentiment trends over time, enabling users to identify patterns, fluctuations, and correlations between sentiment and specific dates. It offers valuable insights into the temporal dynamics of sentiment within the dataset.
+
+""", unsafe_allow_html=True)
+
+
+
+st.header("Overview: Emotion and Sentiment Analysis Dashboard:")
+st.markdown("""
+<div style="font-size: 20px; color: #000;">
+The Emotion and Sentiment Analysis Dashboard offers a comprehensive exploration of the emotions and sentiments depicted in Anne Frank's diary. Users can delve into Anne Frank's emotional odyssey through interactive graphs and charts, gaining insights into her experiences of joy, sadness, anger, and fear, as well as the broader sentiment landscape surrounding her narrative. This immersive analysis enhances the understanding of Anne Frank's diary and its historical importance by providing deeper insights into her innermost thoughts and feelings.
+</div>
+""", unsafe_allow_html=True)

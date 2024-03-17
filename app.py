@@ -71,8 +71,7 @@ common_figsize = (10, 6)
 register_matplotlib_converters()
 
 #the path to your CSV file
-csv_file_path = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
-
+csv_file_path = r'https://github.com/SmitaPable/SentimentalAnalysisofAnneFrank/blob/main/emotions_between_dates_with_sentiment.csv'
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file_path)
 

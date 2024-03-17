@@ -1,4 +1,4 @@
-Faback	anger	0
+aback	anger	0
 aback	anticipation	0
 aback	disgust	0
 aback	fear	0

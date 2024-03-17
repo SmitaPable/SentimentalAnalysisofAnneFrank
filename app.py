@@ -14,6 +14,7 @@ import seaborn as sns
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as pl
 from PIL import Image
+import re 
 
 
 # Additional imports for the 9th graph
@@ -22,6 +23,10 @@ import base64
 
 # Additional imports for the Word Cloud
 from io import StringIO
+
+# Set Streamlit page configuration
+st.set_page_config(layout="centered")
+
 
 @st.cache_data()
 def get_img_as_base64(file):
@@ -52,6 +57,7 @@ page_bg_img = f"""
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
    
+
 
 
 # Define emotions and corresponding colors
@@ -733,9 +739,78 @@ This visualization facilitates the analysis of sentiment trends over time, enabl
 
 
 
+
+#Table1: Density of Emotion Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words
+st.sidebar.title("Table1: Density of Emotion Words in Diary of Anne Frank")
+st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table1: Density of Emotion Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words</h3>", unsafe_allow_html=True)
+
+# Define the emotion word count columns
+emotion_word_count_columns = ['Joy Count', 'Sadness Count', 'Anger Count', 'Fear Count', 
+                              'Trust Count', 'Disgust Count', 'Surprise Count', 'Anticipation Count']
+
+# Calculate the mean and standard deviation for each emotion
+mean_std_per_emotion = {}
+for emotion_column in emotion_word_count_columns:
+    emotion = emotion_column.split()[0]  # Extract emotion name from column name
+    mean_std_per_emotion[emotion] = {
+        'Mean': df[emotion_column].mean(),
+        'Standard Deviation σ': df[emotion_column].std()
+    }
+
+
+df_stats = pd.DataFrame(mean_std_per_emotion).T.round(2)
+# Create a DataFrame for better formatting
+df_stats = df_stats.T
+# Print the formatted output
+st.write(df_stats)
+st.write("Table 1: Density of emotion words in Diary of Anne Frank: Number of emotion words in every 10,000 words.")
+
+st.markdown("""
+<div style="font-size: 16px; color: #000;">
+    <b>Sentiment Labels:</b> Explore the density of different emotions throughout Anne Frank's diary. Dive into the prevalence of joy, sadness, anger, fear, trust, disgust, surprise, and anticipation words, measured as the number of emotion words per 10,000 words of text.
+</div>
+""", unsafe_allow_html=True)
+
+#Table2: Density of Polarity Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words
+st.sidebar.title("Table2: Mean and Standard Deviation of Polarity Words Density in Diary of Anne Frank")
+st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table2: Mean and Standard Deviation of Polarity Words Density in Diary of Anne Frank</h3>", unsafe_allow_html=True)
+
+# Define the polarity word count columns
+positive_columns = ['Joy Count', 'Trust Count', 'Surprise Count']
+neutral_columns = ['Anticipation Count']
+negative_columns = ['Sadness Count', 'Anger Count', 'Fear Count', 'Surprise Count']
+
+# Concatenate all polarity word count columns
+polarity_columns = positive_columns + neutral_columns + negative_columns
+
+# Calculate the mean and standard deviation for each polarity category
+mean_std_polarity = {}
+for polarity_category, columns in {'Positive': positive_columns, 'Neutral': neutral_columns, 'Negative': negative_columns}.items():
+    mean_std_polarity[polarity_category] = {
+        'Mean': df[columns].sum(axis=1).mean(),
+        'Standard Deviation σ': df[columns].sum(axis=1).std()
+    }
+
+# Create a DataFrame for better formatting
+df_stats = pd.DataFrame(mean_std_polarity).T.round(2)
+
+# Print the results
+st.write(df_stats)
+st.write("Table 2: Mean and Standard Deviation of polarity words density in Diary of Anne Frank.")
+st.markdown("""
+<div style="font-size: 16px; color: #000;">
+    <b>Polarity Density Analysis:</b> Discover the density of polarity words in Anne Frank's diary, categorized as positive, neutral, and negative sentiments. Understand the distribution of words associated with joy, trust, surprise, anticipation, sadness, anger, and fear, providing insights into the emotional landscape of Anne Frank's narrative.
+</div>
+""", unsafe_allow_html=True)
+
+
+#Overview: Emotion and Sentiment Analysis Dashboard
+st.sidebar.title("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.header("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.markdown("""
 <div style="font-size: 20px; color: #000;">
 The Emotion and Sentiment Analysis Dashboard offers a comprehensive exploration of the emotions and sentiments depicted in Anne Frank's diary. Users can delve into Anne Frank's emotional odyssey through interactive graphs and charts, gaining insights into her experiences of joy, sadness, anger, and fear, as well as the broader sentiment landscape surrounding her narrative. This immersive analysis enhances the understanding of Anne Frank's diary and its historical importance by providing deeper insights into her innermost thoughts and feelings.
 </div>
 """, unsafe_allow_html=True)
+
+

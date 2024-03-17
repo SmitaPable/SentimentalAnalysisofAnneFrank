@@ -34,7 +34,7 @@ def get_img_as_base64(file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-img = get_img_as_base64("Anne-Frank.jpeg")
+img = get_img_as_base64("Anne-Frank.jpg")
 img1= get_img_as_base64("Anne-Frank1.jpg")
 page_bg_img = f"""
     <style>

@@ -70,10 +70,11 @@ common_figsize = (10, 6)
 # Register converters for matplotlib
 register_matplotlib_converters()
 
-#the path to your CSV file
-csv_file_path = r'https://raw.githubusercontent.com/SmitaPable/SentimentalAnalysisofAnneFrank/main/emotions_between_dates_with_sentiment.csv?token=GHSAT0AAAAAACPWME3IQEHENV2BIWFPGGWAZPXFU4Q'
+# The raw URL of the CSV file on GitHub
+csv_file_url = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
+
 # Read the CSV file into a DataFrame
-df = pd.read_csv(csv_file_path)
+df = pd.read_csv(csv_file_url)
 
 # Convert 'Start Date' to datetime format
 df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
@@ -82,7 +83,7 @@ df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
 df = df.dropna(subset=['Start Date'])
 
 st.sidebar.markdown("""
-    <h3 style='color:Black;font-size: 30px;text-shadow: -4px -4px 0 white;'>Graph Navigation</h3>
+    <h3 style='color:Black;font-size: 30px;text-shadow: -4px -4px 0 white;'>Sentimental Trends of Anne Franks Diary</h3>
     <hr style='border: 1px solid black;'>
 """, unsafe_allow_html=True)
 
@@ -96,7 +97,7 @@ st.markdown("<h3 style='text-align: left; color: black;'>Graph 1: Emotion Counts
 
 
 # Allow the user to select specific emotion counts with a sidebar widget
-selected_emotions = st.sidebar.multiselect('Choose emotions', df.columns[df.columns.str.contains('Count')])
+selected_emotions = st.multiselect('Choose emotions', df.columns[df.columns.str.contains('Count')])
 
 # Define colors for each emotion
 emotion_colors = {'Joy Count': '#32CD32', 'Sadness Count': '#4B0082', 'Anger Count': '#8B0000',
@@ -129,7 +130,7 @@ if selected_emotions:
     st.pyplot(fig)
 else:
     # If no emotions are selected, display a message
-    st.sidebar.info('Please select emotions from the sidebar to visualize.')
+    st.info('Please select emotions from the sidebar to visualize.')
 
 st.header("Graph Summary:")
 st.markdown("""
@@ -286,7 +287,7 @@ st.sidebar.title('Graph 5: Word Clouds for Emotions')
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 5: Word Clouds for Emotions</h1>", unsafe_allow_html=True)
 
 # Allow the user to select the emotion for the word cloud
-selected_wordcloud_emotion = st.sidebar.selectbox('Select emotion for Word Cloud', df.columns[df.columns.str.contains('Words')])
+selected_wordcloud_emotion = st.selectbox('Select emotion for Word Cloud', df.columns[df.columns.str.contains('Words')])
 
 # Define colors for each emotion
 emotion_colors = {'Joy Words': '#32CD32', 'Sadness Words': '#4B0082', 'Anger Words': '#8B0000',
@@ -602,7 +603,7 @@ colors = ['#32CD32', '#4B0082', '#8B0000', '#1A5E63', '#87CEEB', '#556B2F', '#FF
 # Ensure emotions and colors have the same length
 if len(emotions) == len(colors):
     # Create a sidebar dropdown for selecting emotion
-    selected_emotion = st.sidebar.selectbox('Select Emotion:', emotions)
+    selected_emotion = st.selectbox('Select Emotion:', emotions)
 
     # Create a subplot with a line chart for the selected emotion
     fig_animated = make_subplots(rows=1, cols=1, shared_xaxes=True,
@@ -668,13 +669,13 @@ emotion_colors = {'Joy Count': '#32CD32', 'Sadness Count': '#4B0082', 'Anger Cou
                   'Surprise Count': '#FFA500', 'Anticipation Count': '#FF69B4'}
 
 # Add widgets to sidebar for customization
-selected_chart_type = st.sidebar.selectbox("Select chart type", ["Line Chart", "Bar Chart", "Scatter Plot"])
+selected_chart_type = st.selectbox("Select chart type", ["Line Chart", "Bar Chart", "Scatter Plot"])
 
 # Filter column names to remove those containing the word "word"
 filtered_columns = [col for col in df.columns if "word" not in col.lower()]
 
-selected_x_axis = st.sidebar.selectbox("Select X-axis", filtered_columns)
-selected_y_axis = st.sidebar.selectbox("Select Y-axis", filtered_columns)
+selected_x_axis = st.selectbox("Select X-axis", filtered_columns)
+selected_y_axis = st.selectbox("Select Y-axis", filtered_columns)
 
 # Create visualizations based on user selection
 if selected_chart_type == "Line Chart":
@@ -808,7 +809,8 @@ st.sidebar.title("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.header("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.markdown("""
 <div style="font-size: 20px; color: #000;">
-The Sentiment Analysis Dashboard provides a comprehensive exploration of Anne Frank's emotional journey as depicted in her diary. Through interactive graphs and charts, users can gain insights into the evolving emotional landscape of the diary, from moments of joy and sadness to instances of anger and fear. Additionally, users can analyze the density of emotional words and polarity words, measuring the prevalence of specific emotions and sentiments throughout the text. The dashboard offers a chronological perspective on Anne Frank's experiences, allowing users to visualize emotion counts over time, explore sentiment distributions, and uncover correlations between different emotions. Word clouds and sentiment histograms provide qualitative and quantitative analyses of the diary's emotional content, enriching the understanding of Anne Frank's narrative. With features such as animated time series and emotion timeline analysis, users can delve deeper into Anne Frank's diary, gaining profound insights into her innermost thoughts and feelings.</div>
+The Sentiment Analysis Dashboard provides a comprehensive exploration of Anne Frank's emotional journey as depicted in her diary. Through interactive graphs and charts, users can gain insights into the evolving emotional landscape of the diary, from moments of joy and sadness to instances of anger and fear. Additionally, users can analyze the density of emotional words and polarity words, measuring the prevalence of specific emotions and sentiments throughout the text. The dashboard offers a chronological perspective on Anne Frank's experiences, allowing users to visualize emotion counts over time, explore sentiment distributions, and uncover correlations between different emotions. Word clouds and sentiment histograms provide qualitative and quantitative analyses of the diary's emotional content, enriching the understanding of Anne Frank's narrative. With features such as animated time series and emotion timeline analysis, users can delve deeper into Anne Frank's diary, gaining profound insights into her innermost thoughts and feelings.
+            </div>
 """, unsafe_allow_html=True)
 
 

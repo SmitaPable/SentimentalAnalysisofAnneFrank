@@ -71,7 +71,7 @@ common_figsize = (10, 6)
 register_matplotlib_converters()
 
 # The raw URL of the CSV file on GitHub
-csv_file_url = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
+csv_file_url = r'https://raw.githubusercontent.com/SmitaPable/SentimentalAnalysisofAnneFrank/main/emotions_between_dates_with_sentiment.csv'
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file_url)

@@ -71,7 +71,7 @@ common_figsize = (10, 6)
 register_matplotlib_converters()
 
 # The raw URL of the CSV file on GitHub
-csv_file_url = r'https://raw.githubusercontent.com/SmitaPable/SentimentalAnalysisofAnneFrank/main/emotions_between_dates_with_sentiment.csv'
+csv_file_url = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file_url)
@@ -397,12 +397,15 @@ st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 
 # Create a directed graph
 G = nx.DiGraph()
 
-# Iterate through rows and add edges to the graph
-for i in range(len(df) - 1):
-    current_emotion = df.at[i, 'Sentiment Label']
-    next_emotion = df.at[i + 1, 'Sentiment Label']
-    G.add_edge(current_emotion, next_emotion)
+# Create a new column containing the next sentiment label for each row
+df['Next Sentiment Label'] = df['Sentiment Label'].shift(-1)
 
+# Iterate through rows and add edges to the graph
+for _, row in df.iterrows():
+    current_emotion = row['Sentiment Label']
+    next_emotion = row['Next Sentiment Label']
+    if pd.notna(next_emotion):
+        G.add_edge(current_emotion, next_emotion)
 # Plot the Emotion Transition Diagram
 pos = nx.spring_layout(G)
 
@@ -522,7 +525,7 @@ The animated time series illustrates the evolution of emotion counts over time, 
 
 #### Correlation with Anne Frank's Sentiments:
 - **First Entry after Hiding (Negative):** Anne's apprehension and uncertainty upon emerging from hiding likely influenced her negative sentiment, reflecting challenges of reintegrating into a dangerous world.
-- **First Entry after D-Day (Neutral):** Anne's cautious optimism or reserved reaction to the Allied invasion may have resulted in a neutral sentiment, balancing hope for liberation with awareness of uncertainties.
+- **First Entry after D-Day (Positive):** Anne's cautious optimism or reserved reaction to the Allied invasion may have resulted in a Positive sentiment, balancing hope for liberation with awareness of uncertainties.
 - **Warsaw Ghetto Uprising (Highly Negative):** Anne's deep empathy for the suffering in the Warsaw Ghetto likely led to a highly negative sentiment, mirroring the tragic events and profound loss experienced by the Jewish community.
 
 #### Event Markers:
@@ -651,18 +654,6 @@ This interactive visualization aids in understanding the temporal dynamics of em
 st.sidebar.title("Graph 11: Interactive Dashboard")
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 11: Customize Dashboard</h1>", unsafe_allow_html=True)
 
-# Load data (optional if you want to use this data for visualization)
-@st.cache
-def load_data():
-    return df
-
-# Add a sidebar
-st.sidebar.title("")
-
-
-# Convert 'Start Date' to date format
-df['Start Date'] = pd.to_datetime(df['Start Date'])
-
 # Define emotion colors
 emotion_colors = {'Joy Count': '#32CD32', 'Sadness Count': '#4B0082', 'Anger Count': '#8B0000',
                   'Fear Count': '#1A5E63', 'Trust Count': '#87CEEB', 'Disgust Count': '#556B2F',
@@ -672,7 +663,7 @@ emotion_colors = {'Joy Count': '#32CD32', 'Sadness Count': '#4B0082', 'Anger Cou
 selected_chart_type = st.selectbox("Select chart type", ["Line Chart", "Bar Chart", "Scatter Plot"])
 
 # Filter column names to remove those containing the word "word"
-filtered_columns = [col for col in df.columns if "word" not in col.lower()]
+filtered_columns = [col for col in df.columns if "word" not in col.lower() and col != "Next Sentiment Label"]
 
 selected_x_axis = st.selectbox("Select X-axis", filtered_columns)
 selected_y_axis = st.selectbox("Select Y-axis", filtered_columns)

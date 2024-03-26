@@ -71,7 +71,7 @@ common_figsize = (10, 6)
 register_matplotlib_converters()
 
 # The raw URL of the CSV file on GitHub
-csv_file_url = r'https://raw.githubusercontent.com/SmitaPable/SentimentalAnalysisofAnneFrank/main/emotions_between_dates_with_sentiment.csv?token=GHSAT0AAAAAACPWME3IGA2DVRDFFGAOGNCIZP46ATQ'
+csv_file_url = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file_url)
@@ -397,15 +397,12 @@ st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 
 # Create a directed graph
 G = nx.DiGraph()
 
-# Create a new column containing the next sentiment label for each row
-df['Next Sentiment Label'] = df['Sentiment Label'].shift(-1)
-
 # Iterate through rows and add edges to the graph
-for _, row in df.iterrows():
-    current_emotion = row['Sentiment Label']
-    next_emotion = row['Next Sentiment Label']
-    if pd.notna(next_emotion):
-        G.add_edge(current_emotion, next_emotion)
+for i in range(len(df) - 1):
+    current_emotion = df.at[i, 'Sentiment Label']
+    next_emotion = df.at[i + 1, 'Sentiment Label']
+    G.add_edge(current_emotion, next_emotion)
+
 # Plot the Emotion Transition Diagram
 pos = nx.spring_layout(G)
 
@@ -525,7 +522,7 @@ The animated time series illustrates the evolution of emotion counts over time, 
 
 #### Correlation with Anne Frank's Sentiments:
 - **First Entry after Hiding (Negative):** Anne's apprehension and uncertainty upon emerging from hiding likely influenced her negative sentiment, reflecting challenges of reintegrating into a dangerous world.
-- **First Entry after D-Day (Positive):** Anne's cautious optimism or reserved reaction to the Allied invasion may have resulted in a Positive sentiment, balancing hope for liberation with awareness of uncertainties.
+- **First Entry after D-Day (Neutral):** Anne's cautious optimism or reserved reaction to the Allied invasion may have resulted in a neutral sentiment, balancing hope for liberation with awareness of uncertainties.
 - **Warsaw Ghetto Uprising (Highly Negative):** Anne's deep empathy for the suffering in the Warsaw Ghetto likely led to a highly negative sentiment, mirroring the tragic events and profound loss experienced by the Jewish community.
 
 #### Event Markers:
@@ -643,16 +640,30 @@ st.markdown("""
 <span style="font-size: 20px; color: #000;">
 This interactive visualization allows users to explore the evolution of different emotions over time. Users can select an emotion from the dropdown menu on the sidebar to view its corresponding timeline.
 
+#### Insights:
 - **Selection of Emotion:** Choose from a range of emotions including Joy, Sadness, Anger, Fear, Trust, Disgust, Surprise, and Anticipation using the sidebar dropdown menu.
 - **Evolution of Emotion Counts:** The main plot displays the evolution of the selected emotion's counts over time. Each point on the line chart represents the count of the chosen emotion at a specific date.
 - **Animated Visualization:** The chart features an animation option, enabling users to play through the timeline and observe how the counts of the selected emotion fluctuate over different time intervals.
 
 This interactive visualization aids in understanding the temporal dynamics of emotions, offering insights into how emotional states evolve over time. Users can explore trends, identify patterns, and gain deeper insights into the emotional landscape across various time periods.
+</span>
 """, unsafe_allow_html=True)
 
 # Graph 11: Interactive Dashboard
 st.sidebar.title("Graph 11: Interactive Dashboard")
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 11: Customize Dashboard</h1>", unsafe_allow_html=True)
+
+# Load data (optional if you want to use this data for visualization)
+@st.cache
+def load_data():
+    return df
+
+# Add a sidebar
+st.sidebar.title("")
+
+
+# Convert 'Start Date' to date format
+df['Start Date'] = pd.to_datetime(df['Start Date'])
 
 # Define emotion colors
 emotion_colors = {'Joy Count': '#32CD32', 'Sadness Count': '#4B0082', 'Anger Count': '#8B0000',
@@ -663,7 +674,7 @@ emotion_colors = {'Joy Count': '#32CD32', 'Sadness Count': '#4B0082', 'Anger Cou
 selected_chart_type = st.selectbox("Select chart type", ["Line Chart", "Bar Chart", "Scatter Plot"])
 
 # Filter column names to remove those containing the word "word"
-filtered_columns = [col for col in df.columns if "word" not in col.lower() and col != "Next Sentiment Label"]
+filtered_columns = [col for col in df.columns if "word" not in col.lower()]
 
 selected_x_axis = st.selectbox("Select X-axis", filtered_columns)
 selected_y_axis = st.selectbox("Select Y-axis", filtered_columns)
@@ -693,13 +704,15 @@ st.header("Graph Summary:")
 st.markdown("""
 <span style="font-size: 20px; color: #000;">
 This interactive dashboard empowers users to customize their visualizations based on selected chart types and axes variables.
-
+            
+#### Insights:
 - **Chart Type Selection:** Users can choose from three chart types including Line Chart, Bar Chart, and Scatter Plot using the dropdown menu on the sidebar.
 - **Customization Options:** The sidebar also provides options to select the X-axis and Y-axis variables, allowing users to tailor their visualizations according to their preferences.
 - **Dynamic Visualization:** Based on the user's selections, the dashboard generates interactive visualizations that dynamically update to reflect changes in the chosen chart type and axes variables.
   
 This interactive dashboard enhances user experience by offering flexibility and control over the visualization process. Users can explore different chart types, compare variables, and gain deeper insights into the data through interactive and customizable visualizations.
-""", unsafe_allow_html=True)
+</span>
+            """, unsafe_allow_html=True)
 
 
 st.sidebar.title("Graph 12: Sentiment distribution over time")
@@ -719,17 +732,50 @@ st.markdown("""
 <span style="font-size: 20px; color: #000;">
 This visualization provides insights into the distribution of sentiment over time. Users can explore how sentiment labels vary across different dates.
 
+#### Insights:
 - **Sentiment Labels:** The scatter plot displays sentiment labels such as positive, negative, or neutral along the y-axis.
 - **Date:** The x-axis represents the dates, allowing users to track changes in sentiment over time.
 - **Color Coding:** Sentiment labels are color-coded for easy identification, with each label represented by a distinct color.
 - **Hover Data:** Hovering over data points provides additional information such as the sentiment score associated with each data point.
 
 This visualization facilitates the analysis of sentiment trends over time, enabling users to identify patterns, fluctuations, and correlations between sentiment and specific dates. It offers valuable insights into the temporal dynamics of sentiment within the dataset.
-
+</span>
 """, unsafe_allow_html=True)
 
 
+st.sidebar.title("Graph 13: Sentiment Labels Distribution")
+st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 13: Sentiment Labels Distribution</h1>", unsafe_allow_html=True)
+ # Count the occurrences of each sentiment label
+sentiment_counts = df['Sentiment Label'].value_counts()
 
+    # Create pie chart
+labels = sentiment_counts.index.tolist()
+sizes = sentiment_counts.values.tolist()
+
+ # Define custom colors
+colors = {'highly positive': 'green', 
+              'positive': 'lightgreen', 
+              'highly negative': 'darkred', 
+              'negative': 'red', 
+              'neutral': 'lightgrey'}
+
+    # Create pie chart with custom colors
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, colors=[colors[label.lower()] for label in labels])
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+st.pyplot(fig1)
+plt.title('Sentiment Labels Distribution Pie Chart')
+st.header("Graph Summary:")
+
+st.markdown("""
+<span style="font-size: 20px; color: #000;">
+The pie chart shows how the sentiment labels are distributed in the dataset. The sentiment labels consist of categories ranging from highly positive to highly negative.
+
+#### Insights: 
+In general, the chart presents a sentiment analysis that shows a mostly positive sentiment (54.8% when combining Positive and Highly Positive), with negative sentiments (including Negative and Highly Negative) making up 42.8% of the data. The Neutral category remains relatively small compared to the others, highlighting the emotional intensity that permeates Anne Frank's diary entries.
+</span>
+""", unsafe_allow_html=True)
 
 #Table1: Density of Emotion Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words
 st.sidebar.title("Table1: Density of Emotion Words in Diary of Anne Frank")

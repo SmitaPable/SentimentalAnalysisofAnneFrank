@@ -865,6 +865,8 @@ st.markdown("""
 <div style="font-size: 20px; color: #000;">
 The Sentiment Analysis Dashboard provides a comprehensive exploration of Anne Frank's emotional journey as depicted in her diary. Through interactive graphs and charts, users can gain insights into the evolving emotional landscape of the diary, from moments of joy and sadness to instances of anger and fear. Additionally, users can analyze the density of emotional words and polarity words, measuring the prevalence of specific emotions and sentiments throughout the text. The dashboard offers a chronological perspective on Anne Frank's experiences, allowing users to visualize emotion counts over time, explore sentiment distributions, and uncover correlations between different emotions. Word clouds and sentiment histograms provide qualitative and quantitative analyses of the diary's emotional content, enriching the understanding of Anne Frank's narrative. With features such as animated time series and emotion timeline analysis, users can delve deeper into Anne Frank's diary, gaining profound insights into her innermost thoughts and feelings.
             </div>
+<div style="font-size: 10px; color: #000;">
+Img Source by: https://www.stmartin.ie/anne-frank-a-legacy/
 """, unsafe_allow_html=True)
 
 

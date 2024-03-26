@@ -867,6 +867,7 @@ The Sentiment Analysis Dashboard provides a comprehensive exploration of Anne Fr
             </div>
 <div style="font-size: 10px; color: #000;">
 Img Source by: https://www.stmartin.ie/anne-frank-a-legacy/
+</div>
 """, unsafe_allow_html=True)
 
 

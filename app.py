@@ -675,7 +675,7 @@ This interactive visualization aids in understanding the temporal dynamics of em
 st.sidebar.title("Graph 11: Interactive Dashboard")
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 11: Customize Dashboard</h1>", unsafe_allow_html=True)
 
-# Load data (optional if you want to use this data for visualization)
+# Load data 
 @st.cache
 def load_data():
     return df
@@ -794,9 +794,9 @@ In general, the chart presents a sentiment analysis that shows a mostly positive
 </span>
 """, unsafe_allow_html=True)
 
-#Table1: Density of Emotion Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words
+#Table1: Density of Emotion Words in Diary of Anne Frank
 st.sidebar.title("Table1: Density of Emotion Words in Diary of Anne Frank")
-st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table1: Density of Emotion Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table1: Density of Emotion Words in Diary of Anne Frank</h3>", unsafe_allow_html=True)
 
 # Define the emotion word count columns
 emotion_word_count_columns = ['Joy Count', 'Sadness Count', 'Anger Count', 'Fear Count', 
@@ -817,7 +817,7 @@ df_stats = pd.DataFrame(mean_std_per_emotion).T.round(2)
 df_stats = df_stats.T
 # Print the formatted output
 st.write(df_stats)
-st.write("Table 1: Density of emotion words in Diary of Anne Frank: Number of emotion words in every 10,000 words.")
+st.write("Table 1: Density of emotion words in Diary of Anne Frank")
 
 st.markdown("""
 <div style="font-size: 16px; color: #000;">
@@ -825,7 +825,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-#Table2: Density of Polarity Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words
+#Table2: Density of Polarity Words in Diary of Anne Frank
 st.sidebar.title("Table2: Mean and Standard Deviation of Polarity Words Density in Diary of Anne Frank")
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table2: Mean and Standard Deviation of Polarity Words Density in Diary of Anne Frank</h3>", unsafe_allow_html=True)
 

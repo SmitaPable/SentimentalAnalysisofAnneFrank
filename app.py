@@ -830,8 +830,8 @@ st.sidebar.title("Table2: Mean and Standard Deviation of Polarity Words Density 
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table2: Mean and Standard Deviation of Polarity Words Density in Diary of Anne Frank</h3>", unsafe_allow_html=True)
 
 # Define the polarity word count columns
-positive_columns = ['Joy Count', 'Trust Count', 'Surprise Count']
-neutral_columns = ['Anticipation Count']
+positive_columns = ['Joy Count', 'Trust Count','Anticipation Count']
+neutral_columns = ['Surprise Count']
 negative_columns = ['Sadness Count', 'Anger Count', 'Fear Count', 'Surprise Count']
 
 # Concatenate all polarity word count columns

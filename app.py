@@ -103,8 +103,7 @@ csv_file_url = r'https://raw.githubusercontent.com/SmitaPable/SentimentalAnalysi
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file_url)
 
-# Convert 'Start Date' to datetime format
-df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
+
 
 # Filter out rows with NaN dates
 df = df.dropna(subset=['Start Date'])
@@ -128,6 +127,9 @@ st.markdown(
 st.markdown("<h3 style='text-align: left; color: black;'>Exctracted Dataset in CSV format</h1>", unsafe_allow_html=True)
 st.sidebar.title("Exctracted Dataset in CSV format")
 st.write(df)
+
+# Convert 'Start Date' to datetime format
+df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
 # Sidebar title
 st.sidebar.title('Graph 1: Emotion Counts over Time')
 # Adjust the title font size using Markdown and HTML syntax

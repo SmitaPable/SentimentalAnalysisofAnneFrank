@@ -457,7 +457,7 @@ st.markdown("""
 The Sentiment Transition Diagram above illustrates the transitions between different Sentiment over time. Each node represents an sentiment, and directed edges indicate transitions from one sentiment to another.
 
 #### Insights:
-Sentiment Transition Diagram shows how each sentiment state changes into another. However, It is possible for "Neutral" to change into any of the four sentiment states or to stay in "Neutral."
+Sentiment Transition Diagram shows how each sentimental state changes into another. However, It is possible for "Neutral" to change into any of the four sentimental states or to stay in "Neutral."
 
 </span>
 """, unsafe_allow_html=True)

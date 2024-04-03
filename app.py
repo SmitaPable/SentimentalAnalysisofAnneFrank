@@ -550,7 +550,7 @@ st.markdown("""
 The animated time series illustrates the evolution of emotion counts over time, with each line representing a different emotion. Anne's emotional reactions to different events are depicted in an animated time series graph that shows how her emotions have changed over this period.
 
 #### Correlation with Anne Frank's Sentiments:
-- **First Entry after Hiding (Negative)**: The moment when Anne emerges from hiding must have lead her to be both afraid and uncertain. The difficulties of adapting to a hostile world seemingly may also have become evident to her and motivated the negative attitude.
+- **First Entry after Hiding (Negative)**: The moment when Anne went into hiding must have lead her to be both afraid and uncertain. The difficulties of adapting to a hostile world seemingly may also have become evident to her and motivated the negative attitude.
 
 - **First Entry after D-Day (Neutral)**: Anne's cautious hope or border personal reaction to the Allied attack may have led to her neutral mood, where she was indifferent between the hope for the liberation and the awareness of the uncertainties.
 

@@ -604,14 +604,9 @@ The bar chart above displays the highest count of each emotion along with the co
 #### Emotion Analysis:
 In the provided excerpt, Anne Frank undergoes a rollercoaster of emotions, some of them are explained below.
 
-- **Happiness:** Anne experiences a moment of joy on March 6, 1944, amidst the challenges of hiding. This happiness likely stems from companionship and laughter shared with Peter, as well as the enjoyment of simple pleasures like listening to music.
-
-- **Sadness:** On July 8, 1944, Anne grapples with profound sadness as she reflects on the dangers and uncertainties of their situation. The fear of discovery and the potential loss of her cherished diary weigh heavily on her, contributing to her sense of melancholy.
-
-- **Anger:** Anne's privacy violation sparks anger on April 11, 1944, particularly at the suggestion of destroying her diary to conceal their hiding place. This intrusion on her personal space and the threat to her cherished writings elicit a strong sense of injustice and indignation.
-
-- **Fear:** On April 11, 1944, fear grips Anne during a break-in scare, as the threat of discovery looms large. The uncertainty surrounding the intruders' intentions intensifies her apprehension, leaving her feeling vulnerable and on edge as she awaits the arrival of the police.
-
+- 11 April 1944(Fear and Anger) - A break-in incident happened in their hiding place that made anne angry and fearful. The men in the house discovered that some burglars trying to break into the warehouse.
+That caused panic and tension situation among all. They had to hide in darkness fearing for their safety till police arrived. The fear escalated when they heard footsteps and rattling noises, imagining most horrible scenario of being exposed by the Gestapo(police).
+Anne's anxiety maxed when she heard discussion about burning her diary to avoid incrimination.
 
 """, unsafe_allow_html=True)
 

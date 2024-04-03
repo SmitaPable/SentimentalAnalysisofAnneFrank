@@ -422,9 +422,9 @@ and "Negative" sentiments were found, and no instances of "Neutral" sentiment we
 """, unsafe_allow_html=True)
 
 # Seventh Graph - Emotion Transition Diagram
-st.sidebar.title('Graph 7: Emotion Transition Diagram')
+st.sidebar.title('Graph 7: Sentiment Transition Diagram')
 # Adjust the title font size using Markdown and HTML syntax
-st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 7: Emotion Transition Diagram</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Graph 7: Sentiment Transition Diagram</h1>", unsafe_allow_html=True)
 
 # Create a directed graph
 G = nx.DiGraph()
@@ -445,7 +445,7 @@ fig_transition, ax_transition = plt.subplots(figsize=common_figsize)
 nx.draw(G, pos, with_labels=True, font_weight='bold', node_color='lightblue', font_color='black', node_size=1000, ax=ax_transition)
 
 # Set the title
-ax_transition.set_title('Emotion Transition Diagram')
+ax_transition.set_title('Sentiment Transition Diagram')
 
 # Display the Emotion Transition Diagram using Streamlit
 st.pyplot(fig_transition)
@@ -454,10 +454,10 @@ st.header("Graph Summary:")
 # Display the graph summary using st.markdown()
 st.markdown("""
 <span style="font-size: 20px; color: #000;">
-The Emotion Transition Diagram above illustrates the transitions between different emotions over time. Each node represents an emotion, and directed edges indicate transitions from one emotion to another.
+The Sentiment Transition Diagram above illustrates the transitions between different Sentiment over time. Each node represents an sentiment, and directed edges indicate transitions from one sentiment to another.
 
 #### Insights:
-Emotion Transition Diagram shows how each emotional state changes into another. However, It is possible for "Neutral" to change into any of the four emotional states or to stay in "Neutral."
+Sentiment Transition Diagram shows how each sentiment state changes into another. However, It is possible for "Neutral" to change into any of the four sentiment states or to stay in "Neutral."
 
 </span>
 """, unsafe_allow_html=True)

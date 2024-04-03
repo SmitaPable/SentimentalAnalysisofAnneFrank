@@ -98,13 +98,13 @@ common_figsize = (10, 6)
 register_matplotlib_converters()
 
 # The raw URL of the CSV file on GitHub
-csv_file_url = r'https://raw.githubusercontent.com/SmitaPable/SentimentalAnalysisofAnneFrank/main/emotions_between_dates_with_sentiment.csv?token=GHSAT0AAAAAACPWME3IWSXQMKTPVOGFG3LMZQDDQRQ'
+csv_file_url = r'C:\Users\DELL\Desktop\Project\Untitled Folder\emotions_between_dates_with_sentiment.csv'
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file_url)
 
 # Convert 'Start Date' to datetime format
-df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
+
 
 # Filter out rows with NaN dates
 df = df.dropna(subset=['Start Date'])
@@ -125,11 +125,12 @@ st.markdown(
 )
 # Set up Streamlit app
 #st.write(f"<h1 style='color:Black;font-size: 50px; text-shadow: -4px -4px 0 white;'>Sentimental Analysis of Anne Frank Diary</h1>", unsafe_allow_html=True)
+
 st.markdown("<h3 style='text-align: left; color: black;'>Exctracted Dataset in CSV format</h1>", unsafe_allow_html=True)
 st.sidebar.title("Exctracted Dataset in CSV format")
 st.write(df)
 
-
+df['Start Date'] = pd.to_datetime(df['Start Date'], errors='coerce')
 # Sidebar title
 st.sidebar.title('Graph 1: Emotion Counts over Time')
 # Adjust the title font size using Markdown and HTML syntax
@@ -456,10 +457,10 @@ st.header("Graph Summary:")
 # Display the graph summary using st.markdown()
 st.markdown("""
 <span style="font-size: 20px; color: #000;">
-The Sentiment Transition Diagram above illustrates the transitions between different Sentiment over time. Each node represents an sentiment, and directed edges indicate transitions from one sentiment to another.
+The Sentiment Transition Diagram above illustrates the transitions between different Sentiments over time. Each node represents an Sentiment, and directed edges indicate transitions from one Sentiment to another.
 
 #### Insights:
-Sentiment Transition Diagram shows how each sentimental state changes into another. However, It is possible for "Neutral" to change into any of the four sentimental states or to stay in "Neutral."
+Sentiment Transition Diagram shows how each Sentimental state changes into another. However, It is possible for "Neutral" to change into any of the four Sentimental states or to stay in "Neutral."
 
 </span>
 """, unsafe_allow_html=True)
@@ -609,8 +610,8 @@ The bar chart above displays the highest count of each emotion along with the co
 In the provided excerpt, Anne Frank undergoes a rollercoaster of emotions, some of them are explained below.
 
 - 11 April 1944(Fear and Anger) - A break-in incident happened in their hiding place that made anne angry and fearful. The men in the house discovered that some burglars trying to break into the warehouse.
-That caused panic and tension situation among all. They had to hide in darkness fearing for their safety till police arrived. The fear escalated when they heard footsteps and rattling noises, imagining most horrible scenario of being exposed by the Gestapo(police).
-Anne's anxiety maxed when she heard discussion about burning her diary to avoid incrimination.
+             That caused panic and tension situation among all. They had to hide in darkness fearing for their safety till police arrived. The fear escalated when they heard footsteps and rattling noises, imagining most horrible scenario of being exposed by the Gestapo(police).
+             Anne's anxiety maxed when she heard discussion about burning her diary to avoid incrimination.
 
 """, unsafe_allow_html=True)
 
@@ -795,7 +796,7 @@ In general, the chart presents a sentiment analysis that shows a mostly positive
 
 #Table1: Density of Emotion Words in Diary of Anne Frank
 st.sidebar.title("Table1: Density of Emotion Words in Diary of Anne Frank")
-st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table1: Density of Emotion Words in Diary of Anne Frank</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table1: Density of Emotion Words in Diary of Anne Frank: Number of Emotion Words in Every 10,000 Words</h3>", unsafe_allow_html=True)
 
 # Define the emotion word count columns
 emotion_word_count_columns = ['Joy Count', 'Sadness Count', 'Anger Count', 'Fear Count', 
@@ -829,7 +830,7 @@ st.sidebar.title("Table2: Mean and Standard Deviation of Polarity Words Density 
 st.markdown("<h3 style='text-align: left; color: black; font-size: 24px;'>Table2: Mean and Standard Deviation of Polarity Words Density in Diary of Anne Frank</h3>", unsafe_allow_html=True)
 
 # Define the polarity word count columns
-positive_columns = ['Joy Count', 'Trust Count','Anticipation Count']
+positive_columns = ['Joy Count', 'Trust Count', 'Anticipation Count']
 neutral_columns = ['Surprise Count']
 negative_columns = ['Sadness Count', 'Anger Count', 'Fear Count', 'Surprise Count']
 
@@ -862,10 +863,8 @@ st.sidebar.title("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.header("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.markdown("""
 <div style="font-size: 20px; color: #000;">
-The Analysis Dashboard of Sentiment helps to acquire the overall pattern of the emotions of Anne Frank that she writes in her diary. It is with the help of these interactive graphs and charts that the users can get the chance to delve into the emotional roller coaster of the diary – from happy and sad to the anger and fearful experiences. Also, the tool is able to generate the analysis on the emotional density and polarity expressions. Words with specific emotional meanings and the sentiment words appear in the text through the entire analysis. Dashboard will reflect the chronology of emotional changes experienced by Anne Frank through counting the emotions in the graphs, analyzing the sentiment distributions and establishing inter-emotional relationships. The qualitative and quantitative assessments of the tone of the diary are both provided by the word clouds and the sentiment histograms, which helps the audience grasp a deeper meaning of the story of Anne Frank. Using tools like animated time series and emotion timeline analysis, users dig deeper into the diary, revealing the depth of Anne Frank's inner thoughts and emotions for them.            </div>
-<div style="font-size: 10px; color: #000;">
-Img Source by: https://www.stmartin.ie/anne-frank-a-legacy/
-</div>
+The Sentiment Analysis Dashboard provides a comprehensive exploration of Anne Frank's emotional journey as depicted in her diary. Through interactive graphs and charts, users can gain insights into the evolving emotional landscape of the diary, from moments of joy and sadness to instances of anger and fear. Additionally, users can analyze the density of emotional words and polarity words, measuring the prevalence of specific emotions and sentiments throughout the text. The dashboard offers a chronological perspective on Anne Frank's experiences, allowing users to visualize emotion counts over time, explore sentiment distributions, and uncover correlations between different emotions. Word clouds and sentiment histograms provide qualitative and quantitative analyses of the diary's emotional content, enriching the understanding of Anne Frank's narrative. With features such as animated time series and emotion timeline analysis, users can delve deeper into Anne Frank's diary, gaining profound insights into her innermost thoughts and feelings.
+            </div>
 """, unsafe_allow_html=True)
 
 

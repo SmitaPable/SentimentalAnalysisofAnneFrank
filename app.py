@@ -217,9 +217,7 @@ st.markdown("""
 The pie chart above illustrates the distribution of emotions based on their total counts. Each slice represents the proportion of a specific emotion within the dataset.
 
 #### Insights:
-The emotional journey of Anne Frank shows the complex range of feelings she experienced while hiding. The frequency of fear (13.3%) and sadness (12.8%) reveals the significant obstacles and uncertainties she faced, yet moments of joy (14.1%) and anticipation (15.1%) reflect optimism and hopefulness. Furthermore, despite the danger and isolation, the high level of trust (17.7%) indicates a certain dependence on others for solace and support. The 
-fact that she expressed anger (10.7%), disgust (8.2%), and surprise (8%) highlights the complexity of her experiences, which included disgust, astonishment, and irritation in the 
-midst of the turbulent conditions of hiding during the Holocaust. 
+The emotional journey of Anne Frank shows the complex range of feelings she experienced while hiding. The recurrence of a feeling of fear (13.3%) and sadness (12.8%) reflects the problems and relatively uncertain situation she has been experiencing. On the other hand, the narration might also speak a tone of joy (14.11%) and anticipation (15.12%) which are the words that indicate an optimist and some positive outlook. However, other than that, considered the type of trust (17.7%) which shows that people require each other for emotional support or happiness. Through the change of mood from 10.7% (which is angry), 8.2% (which is disgusted), and 8% (which is really surprised), you can see the depths of the emotions of a Holocaust survivor while trying to survive the harsh conditions of their struggle for survival.
 
 </span>
 """, unsafe_allow_html=True)
@@ -268,8 +266,10 @@ st.markdown("""
 This histogram visualizes the distribution of sentiment scores. Each bar represents the frequency of sentiment scores within a certain range.
 
 #### Insights:
-The bars are colored based on a custom colormap ranging from dark red to dark green, indicating the sentiment intensity.
-According to this histogram study, which has a peak in the negative region, Anne Frank's diary has a significant quantity of negative sentiment. Furthermore, neutral feeling is widely prevalent, whereas extreme positive sentiment is somewhat uncommon. Understanding the general sentiment trends depicted in Anne Frank's story can benefit greatly from these observations.
+-  Correspondingly, the majority of distribution for the data consists of the values to the left of zero, and so the data is likely dominated by a lot of these negative sentiment scores.
+-  The most bars place between scores 0 and –20, which all are the negative range representing the fact that the sentiment score is likely to be frequently recorded in this area in the diary.
+-  There is a high concentration of ratings around the neutral zone which suggests that numerous emotion scores fall into this category.
+-  However, there is a noticeable decrease in the intensity of positivity (there exist fewer bars at the extreme positive end of the scale) and at the same time the frequency of highly positive sentiments is lower than the highly negative ones. 
 Feel free to explore the sentiment score distribution and analyze any patterns or trends.
 </span>
 """, unsafe_allow_html=True)
@@ -314,8 +314,9 @@ st.markdown("""
 The correlation heatmap above illustrates the relationships between different emotion counts. Each cell represents the correlation coefficient between two emotion counts, indicating the strength and direction of their relationship.
 
 #### Insights:
-- Colours: The heatmap's colours span from red to blue, and the scale is shown by a colour bar on the right. Higher positive correlations are shown by red, higher negative correlations by blue, and values ranging from positive to negative are represented by the hues in between.
-- Interpretation: For instance, the cell with a correlation value of -0.611338 is shaded red and located at the intersection of the X- and Y-axes labelled "Disgust Count" and "Surprise Count." This shows that the counts of the emotions "Disgust" and "Surprise" have a somewhat negative association.
+-  Colours: Colour scale of the heat map covers from red to blue, and it is shown by a colour bar on the right side of the screen. For instance, the red shows the correlations become higher positive, the blue shows the negative, and the colours in between show different values ranging from positive to negative.
+
+-  Correlation Values: The heatmap would highlight the emotions on the X- (horizontal) and Y- (vertical) axes where each square (or cell) represents the correlation between them. A perfect positive correlation shown by a correlation value of 1 for an example and a perfect negative correlation shown by a correlation value of -1 in example, and no correlation stands for a correlation value of 0.
 </span>
 """, unsafe_allow_html=True)
 
@@ -357,8 +358,7 @@ st.markdown("""
 The word cloud visualization above displays the most frequent words associated with a selected emotion. Each word's size represents its frequency, and its color corresponds to the selected emotion.
 
 #### Insights:
-- Interpretation: For Instance, Word Clouds for Emotions and has the theme "Anger Words," is a portion of a bigger set or presentation. 
-The word cloud highlights words related to rage in red, highlighting the emotional context. The larger the word, the more likely it is to be connected to the feeling of anger.
+- Interpretation: A word cloud which is a graphical way of a representation of text data and each size word is an indication of its correlation or its frequency. 
 
 </span>
 """, unsafe_allow_html=True)
@@ -417,10 +417,7 @@ st.markdown("""
 The bar chart above represents the distribution of sentiment labels with extreme scores. Each bar corresponds to a sentiment label category, showing the count of occurrences and the extreme score associated with each category.
 
 #### Insights:
-- On the based on the graph, we may deduce that most sentiments were categorized as "Highly Positive" or "Highly Negative" as a result of the sentiment analysis, with "Highly Positive" sentiments being somewhat more common. Few "Positive" 
-and "Negative" sentiments were found, and no instances of "Neutral" sentiment were noted. The extreme scores most likely reflect the sentiment's intensity or strength.
-
-
+- The extreme scores most likely reflect the sentiment's intensity or strength. the sentiment polarity was either "Highly Positive" or "Positive" in the vast majority of cases, "Positive" being slightly more common. The results were mostly "Highly negative" and "Negative" sentiments, but very less "Neutral" sentiment was observed.
 </span>
 """, unsafe_allow_html=True)
 
@@ -460,7 +457,7 @@ st.markdown("""
 The Sentiment Transition Diagram above illustrates the transitions between different Sentiments over time. Each node represents an Sentiment, and directed edges indicate transitions from one Sentiment to another.
 
 #### Insights:
-Sentiment Transition Diagram shows how each Sentimental state changes into another. However, It is possible for "Neutral" to change into any of the four Sentimental states or to stay in "Neutral."
+Sentiment Transition Diagram shows how each Sentimental state changes into another. However, It is possible for "Neutral" to change into any of the four Sentimental states but it is not possible that neutral emotion will stay neutral only."
 
 </span>
 """, unsafe_allow_html=True)
@@ -553,9 +550,12 @@ st.markdown("""
 The animated time series illustrates the evolution of emotion counts over time, with each line representing a different emotion. Anne's emotional reactions to different events are depicted in an animated time series graph that shows how her emotions have changed over this period.
 
 #### Correlation with Anne Frank's Sentiments:
-- **First Entry after Hiding (Negative):** Anne's apprehension and uncertainty upon emerging from hiding likely influenced her negative sentiment, reflecting challenges of reintegrating into a dangerous world.
-- **First Entry after D-Day (Neutral):** Anne's cautious optimism or reserved reaction to the Allied invasion may have resulted in a neutral sentiment, balancing hope for liberation with awareness of uncertainties.
-- **Warsaw Ghetto Uprising (Highly Negative):** Anne's deep empathy for the suffering in the Warsaw Ghetto likely led to a highly negative sentiment, mirroring the tragic events and profound loss experienced by the Jewish community.
+- **First Entry after Hiding (Negative)**: The moment when Anne emerges from hiding must have lead her to be both afraid and uncertain. The difficulties of adapting to a hostile world seemingly may also have become evident to her and motivated the negative attitude.
+
+- **First Entry after D-Day (Neutral)**: Anne's cautious hope or border personal reaction to the Allied attack may have led to her neutral mood, where she was indifferent between the hope for the liberation and the awareness of the uncertainties.
+
+- **Warsaw Ghetto Uprising (Highly Negative)**: Anne's extreme sensitivity and deep empathy towards the Warsaw Ghetto sufferings certainly makes her to have an extremely pessimistic perspective, along the tragic events and the loss that the Jewish people witnessed.
+
 
 #### Event Markers:
 Vertical lines mark significant historical events, providing context for interpreting emotion trends.
@@ -665,9 +665,9 @@ st.markdown("""
 This interactive visualization allows users to explore the evolution of different emotions over time. Users can select an emotion from the dropdown menu on the sidebar to view its corresponding timeline.
 
 #### Insights:
-- This examination illuminates the psychological distress that Anne Frank experienced throughout her incarceration, providing an insight into the spectrum of emotions she faced on a daily basis
+- This close examination sheds light on the emotional distress that Anne Frank had to endure in her prison life, conveying us the range of her feelings.
 
-This interactive visualization aids in understanding the temporal dynamics of emotions, offering insights into how emotional states evolve over time. Users can explore trends, identify patterns, and gain deeper insights into the emotional landscape across various time periods.
+This interactive visualization enables us to investigate the temporal patterns of emotions and therefore helps to deduce how emotional states change over time. Users can navigate through trends, spot patterns, and make deeper analysis on the emotional spectrum of the specific time spans.
 </span>
 """, unsafe_allow_html=True)
 
@@ -728,12 +728,11 @@ st.markdown("""
 This interactive dashboard empowers users to customize their visualizations based on selected chart types and axes variables.
             
 #### Insights:
-- **Chart Type Selection:** Users can choose from three chart types including Line Chart, Bar Chart, and Scatter Plot using the dropdown menu on the sidebar.
-- **Customization Options:** The sidebar also provides options to select the X-axis and Y-axis variables, allowing users to tailor their visualizations according to their preferences.
-- **Dynamic Visualization:** Based on the user's selections, the dashboard generates interactive visualizations that dynamically update to reflect changes in the chosen chart type and axes variables.
-  
-This interactive dashboard enhances user experience by offering flexibility and control over the visualization process. Users can explore different chart types, compare variables, and gain deeper insights into the data through interactive and customizable visualizations.
-</span>
+- **Chart Type Selection**: Different chart formats such as a line chart, bar chart, and scatter plot, can be selected using the drop-down menu. 
+- **Customization Options**:  options to select the X and Y axes of their structure, allowing them to customize their visualizations according to their own preferences.
+- **Dynamic Visualization**: The dashboard provides an interactive feature, which updates the graphs in real-time, reflecting the changes made in the chart type and axes variables.
+
+The user interaction is attained by dashboard in which the experience is enhanced with flexibility and control over the visualization process. Consumers are enabled to switch among different charts, compare variables, and achieve more profound comprehension of the data by means of interactive and customizable visualizations.</span>
             """, unsafe_allow_html=True)
 
 
@@ -790,7 +789,7 @@ st.markdown("""
 The pie chart shows how the sentiment labels are distributed in the dataset. The sentiment labels consist of categories ranging from highly positive to highly negative.
 
 #### Insights: 
-In general, the chart presents a sentiment analysis that shows a mostly positive sentiment (54.8% when combining Positive and Highly Positive), with negative sentiments (including Negative and Highly Negative) making up 42.8% of the data. The Neutral category remains relatively small compared to the others, highlighting the emotional intensity that permeates Anne Frank's diary entries.
+The general graph shows the results of a general sentiment analysis that exhibits 54.8% positive sentiments set by positive and highly positive categories, while the percentage of negative sentiments which comprise those of negative and highly negative categories is 42.8%. The proportion of Neutral category is small as compared to the rest, illustrating the highly emotional nature of Anne’s diary entries.
 </span>
 """, unsafe_allow_html=True)
 
@@ -853,8 +852,8 @@ st.write(df_stats)
 st.write("Table 2: Mean and Standard Deviation of polarity words density in Diary of Anne Frank.")
 st.markdown("""
 <div style="font-size: 16px; color: #000;">
-    <b>Polarity Density Analysis:</b> Discover the density of polarity words in Anne Frank's diary, categorized as positive, neutral, and negative sentiments. Understand the distribution of words associated with joy, trust, surprise, anticipation, sadness, anger, and fear, providing insights into the emotional landscape of Anne Frank's narrative.
-</div>
+    <b>Polarity Density Analysis:</b> Explore Anne Frank's diary, where the levels of polarized words grouped into positive, neutral, and negative emotions are calculated. Realize how the word associations relate to joy, trust, surprise, anticipation, sadness, anger, and fear, which will enable you to explore the emotional landscape of the narrative from Anne Frank's point of view.
+
 """, unsafe_allow_html=True)
 
 
@@ -863,7 +862,7 @@ st.sidebar.title("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.header("Overview: Emotion and Sentiment Analysis Dashboard:")
 st.markdown("""
 <div style="font-size: 20px; color: #000;">
-The Sentiment Analysis Dashboard provides a comprehensive exploration of Anne Frank's emotional journey as depicted in her diary. Through interactive graphs and charts, users can gain insights into the evolving emotional landscape of the diary, from moments of joy and sadness to instances of anger and fear. Additionally, users can analyze the density of emotional words and polarity words, measuring the prevalence of specific emotions and sentiments throughout the text. The dashboard offers a chronological perspective on Anne Frank's experiences, allowing users to visualize emotion counts over time, explore sentiment distributions, and uncover correlations between different emotions. Word clouds and sentiment histograms provide qualitative and quantitative analyses of the diary's emotional content, enriching the understanding of Anne Frank's narrative. With features such as animated time series and emotion timeline analysis, users can delve deeper into Anne Frank's diary, gaining profound insights into her innermost thoughts and feelings.
+The Sentiment Analysis Dashboard makes Anne Frank's “Diary of a Young Girl” a rich resource on her emotional ups and downs through a thorough exploration of her emotions. With the graphs and the charts that are interactive, the users can easily understand the changing emotional scene of the diary, from petty happiness and bitterness, to outrage and fear. Furthermore, users can conduct the density analysis of emotional words and polarity words to evaluate the importance of a certain emotion/sentiment depicted within the text. The dashboard, chronologically, offers a visualization that shows emotions count over time, sentiment composition, and also interrelationships among different emotions. Word clouds and sentiment histograms allows visualizing the emotional aspect of the diary from both the qualitative and quantitative point of view, making it clear the character of Anne Frank's writing. By adding some of the graphic elements such as showing animated time series and emotion charts, users can explore deeper levels of Anne Frank's diary, which subsequently revealed her innermost temperaments and feelings.
             </div>
 """, unsafe_allow_html=True)
 

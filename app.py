@@ -125,7 +125,9 @@ st.markdown(
 )
 # Set up Streamlit app
 #st.write(f"<h1 style='color:Black;font-size: 50px; text-shadow: -4px -4px 0 white;'>Sentimental Analysis of Anne Frank Diary</h1>", unsafe_allow_html=True)
-
+st.markdown("<h3 style='text-align: left; color: black;'>Exctracted Dataset in CSV format</h1>", unsafe_allow_html=True)
+st.sidebar.title("Exctracted Dataset in CSV format")
+st.write(df)
 # Sidebar title
 st.sidebar.title('Graph 1: Emotion Counts over Time')
 # Adjust the title font size using Markdown and HTML syntax

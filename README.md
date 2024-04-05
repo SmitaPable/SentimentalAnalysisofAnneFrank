@@ -12,7 +12,7 @@ The following steps were undertaken during data cleaning:
 - **Tokenization**: The text was broken down into sentences or words (tokens) for analysis.
 - **Normalization**: Text was converted to lowercase, punctuation was removed, and spelling errors were corrected.
 - **Stop Word Removal**: Common words that do not contribute to sentiment were removed.
-- **Stemming/Lemmatization**: Words were reduced to their root form or base dictionary form.
+
 
 ## Emotion Extraction
 
